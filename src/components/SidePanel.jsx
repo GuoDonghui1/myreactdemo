@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useStore } from '../store/MyProvider';
 import appLogo from "../assets/images/app-logo.svg";
 
 function SidePanel(props) {
-    console.log(props.children);
-    let renderChildren = children => {
+    //console.log(props.children);
+    /*let renderChildren = children => {
         if (children === undefined) {
             return;
         }
@@ -11,17 +12,25 @@ function SidePanel(props) {
             return children.map(child => child);
         }
         return children;
-    }
+    }*/
+
+    let { windowWidth, isVisible, setVisible } = useStore();
     return (
-        <div id="app-sidepanel" className="app-sidepanel">
-            <div id="sidepanel-drop" className="sidepanel-drop">
+        <div id="app-sidepanel"
+             className={`app-sidepanel ${windowWidth >= 1200 || isVisible ? 'sidepanel-visible' : 'sidepanel-hidden'}`}>
+            <div id="sidepanel-drop" className="sidepanel-drop" >
 
             </div>
             <div className="sidepanel-inner d-flex flex-column">
-                <a href="#" id="sidepanel-close"
+                <a onClick={e =>{
+                        e.preventDefault();
+                        setVisible(false);
+                    }
+                }
+                   href="#" id="sidepanel-close"
                    className="sidepanel-close d-xl-none">&times;
                 </a>
-                {renderChildren(props.children)}
+                {props.children}
             </div>
         </div>
     );
