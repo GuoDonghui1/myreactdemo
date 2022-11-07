@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NotificationBox from "./NotificationBox";
 import SettingsButton from "./SettingsButton";
 import UserAvatar from "./UserAvatar";
-import { invoice } from "../utils/IconData";
+import { invoice } from "../../utils/IconData";
 
 const notifications = [
     {

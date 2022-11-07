@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import userProfile from "../assets/images/user.png";
+import userProfile from "../../assets/images/user.png";
 
 UserAvatar.propTypes = {
 

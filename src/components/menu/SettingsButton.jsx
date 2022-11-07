@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { settings } from "../utils/IconData";
+import { settings } from "../../utils/IconData";
 
 SettingsButton.propTypes = {
 

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import NavItem from "./NavItem";
 import NavGroupItem from "./NavGroupItem";
 import { useLocation } from 'react-router-dom';
+import * as icons from "../../utils/IconData";
+
 Nav.propTypes = {
     menu: PropTypes.array.isRequired,
 };
@@ -14,10 +16,10 @@ function Nav(props) {
             <ul className="app-menu list-unstyled accordion" id="menu-accordion">
                 { props.menu.map(m => {
                     if (!m.hasOwnProperty('subMenuId')) {
-                        return <NavItem key={m.menuId} active={urlPath === m.url} title={m.title} icon={m.icon} url={m.url}/>
+                        return <NavItem key={m.menuId} active={urlPath === m.url} title={m.title} icon={icons[m.icon]} url={m.url}/>
                     } else {
                         return <NavGroupItem key={m.menuId} title={m.title}
-                                             subMenuId={m.subMenuId} children={m.children} icon={m.icon} url={m.url}/>
+                                             subMenuId={m.subMenuId} children={m.children} icon={icons[m.icon]} url={m.url}/>
                     }
                 })}
             </ul>

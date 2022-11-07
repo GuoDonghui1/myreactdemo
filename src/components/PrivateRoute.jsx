@@ -1,19 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
+import {useStore} from "../store/MyProvider";
 
 PrivateRoute.propTypes = {};
 
-function PrivateRoute({pathname, children, ...rest}) {
-    let isLogin = false;
+function PrivateRoute({children, ...rest}) {
+    let { isLogin } = useStore().loginStore.loginState;
+    console.log('privateroutechildren', children);
+    console.log('privateroute rest', rest);
     return (
-        <Route {...rest} render={p => {
-            console.log(p);
+        <Route {...rest} render={ p => {
+            console.log('privateroute route p', p);
+            console.log('privateroute route rest', rest);
             return isLogin ? (children) : (
                 <Redirect
                     to={{
                         pathname: "/login",
-                        state: {from: pathname}
+                        state: { from: p.location.pathname }
                     }}
                 />
             )

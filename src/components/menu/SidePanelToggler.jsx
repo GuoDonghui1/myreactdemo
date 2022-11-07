@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {useStore} from "../store/MyProvider";
+import {useStore} from "../../store/MyProvider";
+import {runInAction} from "mobx";
+import { observer } from 'mobx-react';
 
 SidePanelToggler.propTypes = {
 
 };
 
 function SidePanelToggler(props) {
-    let { isVisible, setVisible } = useStore();
+    let { isVisible, visibleStore } = useStore();
     return (
         <div className="col-auto">
             <a id="sidepanel-toggler"
                className="sidepanel-toggler d-inline-block d-xl-none"
                href="#" onClick={ e => {
                    e.preventDefault();
-                   setVisible(!isVisible);
+                   runInAction( () => visibleStore.setPanelVisibility(!visibleStore.sidePanelVisible));
                }
             } >
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"
@@ -29,4 +31,4 @@ function SidePanelToggler(props) {
     );
 }
 
-export default SidePanelToggler;
+export default observer(SidePanelToggler);

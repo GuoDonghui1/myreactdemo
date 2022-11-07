@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { useStore } from '../store/MyProvider';
-import appLogo from "../assets/images/app-logo.svg";
+import { useStore } from '../../store/MyProvider';
+import appLogo from "../../assets/images/app-logo.svg";
+import { observer } from 'mobx-react';
+import { runInAction } from 'mobx';
 
 function SidePanel(props) {
     //console.log(props.children);
@@ -14,17 +16,17 @@ function SidePanel(props) {
         return children;
     }*/
 
-    let { windowWidth, isVisible, setVisible } = useStore();
+    let { windowWidth, visibleStore } = useStore();
     return (
         <div id="app-sidepanel"
-             className={`app-sidepanel ${windowWidth >= 1200 || isVisible ? 'sidepanel-visible' : 'sidepanel-hidden'}`}>
+             className={`app-sidepanel ${windowWidth >= 1200 || visibleStore.sidePanelVisible ? 'sidepanel-visible' : 'sidepanel-hidden'}`}>
             <div id="sidepanel-drop" className="sidepanel-drop" >
 
             </div>
             <div className="sidepanel-inner d-flex flex-column">
-                <a onClick={e =>{
+                <a onClick={e => {
                         e.preventDefault();
-                        setVisible(false);
+                        runInAction( () => visibleStore.setPanelVisibility(false));
                     }
                 }
                    href="#" id="sidepanel-close"
@@ -36,4 +38,4 @@ function SidePanel(props) {
     );
 }
 
-export default SidePanel;
+export default observer(SidePanel);

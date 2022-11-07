@@ -2,8 +2,8 @@ import React, { useContext, useState, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import MyContext from "./MyContext";
 import {useWindowSize} from "../utils/useWindowSize";
-import loginReducer, { initState as loginInitState } from './loginReducer';
-
+import loginReducer, { getInitState as getLoginInitState } from './loginReducer';
+import visibleStore from './VisibleStore';
 
 MyProvider.propTypes = {
 
@@ -11,14 +11,12 @@ MyProvider.propTypes = {
 
 function MyProvider(props) {
     let { width, height } = useWindowSize();
-    let[isVisible, setVisible] = useState(false);
-    let[loginState, loginDispatch] = useReducer(loginReducer, loginInitState);
+    let [loginState, loginDispatch] = useReducer(loginReducer, getLoginInitState());
 
     let store = {
         windowWidth: width,
         windowHeight: height,
-        isVisible,
-        setVisible,
+        visibleStore,
         loginStore: {
             loginState,
             loginDispatch
