@@ -7,12 +7,8 @@ PrivateRoute.propTypes = {};
 
 function PrivateRoute({children, ...rest}) {
     let { isLogin } = useStore().loginStore.loginState;
-    console.log('privateroutechildren', children);
-    console.log('privateroute rest', rest);
     return (
         <Route {...rest} render={ p => {
-            console.log('privateroute route p', p);
-            console.log('privateroute route rest', rest);
             return isLogin ? (children) : (
                 <Redirect
                     to={{

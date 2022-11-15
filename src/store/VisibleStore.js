@@ -3,6 +3,7 @@ class VisibleStore {
     sidePanelVisible = false;
     searchInputVisible = false;
     constructor() {
+        this.sidePanelVisible = window.innerWidth >= 1200;
         makeAutoObservable(this);
     }
     setPanelVisibility(isVisible) {
@@ -12,7 +13,7 @@ class VisibleStore {
         this.searchInputVisible = isVisible;
     }
     resetAllVisibility() {
-        this.sidePanelVisible = false;
+        this.sidePanelVisible = window.innerWidth >= 1200;
         this.searchInputVisible = false;
     }
 }

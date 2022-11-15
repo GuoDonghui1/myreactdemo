@@ -12,7 +12,6 @@ MyProvider.propTypes = {
 function MyProvider(props) {
     let { width, height } = useWindowSize();
     let [loginState, loginDispatch] = useReducer(loginReducer, getLoginInitState());
-
     let store = {
         windowWidth: width,
         windowHeight: height,

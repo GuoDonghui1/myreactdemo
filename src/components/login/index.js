@@ -67,7 +67,7 @@ function Login(props) {
             <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
                 <div className="d-flex flex-column align-content-end">
                     <div className="app-auth-body mx-auto">
-                        <div className="app-auth-branding mb-4"><a className="app-logo" href="index.html"><img
+                        <div className="app-auth-branding mb-4"><a className="app-logo" href="/"><img
                             className="logo-icon mr-2" src={logo} alt="logo"/></a></div>
                         <h2 className="auth-heading text-center mb-5">Log in to Portal</h2>
                         <div className="auth-form-container text-left">

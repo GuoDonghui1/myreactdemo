@@ -10,6 +10,10 @@ import Nav from "./Nav";
 import SidePanelFooter from "./SidePanelFooter";
 import {useStore} from "../../store/MyProvider";
 import { useLocation } from 'react-router-dom';
+import './menu.css';
+import SidePanelLoading from "../loading/SidePanelLoading";
+import { useSelector } from "react-redux";
+
 Header.propTypes = {
 
 };
@@ -21,6 +25,8 @@ const logoText = {
 function Header(props) {
     let urlPath = useLocation();
     let { windowWidth, loginStore, visibleStore } = useStore();
+    let loading = useSelector(state => state.loading.loadingSidePanel);
+
     useEffect(() => {
         visibleStore.resetAllVisibility();
     },[windowWidth, urlPath]);
@@ -34,14 +40,18 @@ function Header(props) {
             </TopBar>
             <SidePanel>
                 {/* logo及名称 */}
-                <div className="app-branding">
-                    <a className="app-logo" href="/">
-                        <img className="logo-icon mr-2" src={appLogo} alt="logo"/>
-                        <span className={'logo-text'} style={logoText}>Application</span>
-                    </a>
-                </div>
-                <Nav menu={props.menu}/>
-                <SidePanelFooter/>
+                {loading ? <SidePanelLoading/> : (
+                    <>
+                        <div className="app-branding">
+                            <a className="app-logo" href="/">
+                                <img className="logo-icon mr-2" src={appLogo} alt="logo"/>
+                                <span className={'logo-text'} style={logoText}>Application</span>
+                            </a>
+                        </div>
+                        <Nav menu={props.menu}/>
+                        <SidePanelFooter/>
+                    </>
+                )}
             </SidePanel>
         </header>
     ) : null;

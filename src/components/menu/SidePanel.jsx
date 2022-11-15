@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useStore } from '../../store/MyProvider';
 import appLogo from "../../assets/images/app-logo.svg";
 import { observer } from 'mobx-react';
 import { runInAction } from 'mobx';
-
+import {useDispatch} from "react-redux";
+import { sidePanelLoadingState } from '../../store/LoadingSlice';
 function SidePanel(props) {
     //console.log(props.children);
     /*let renderChildren = children => {
@@ -15,11 +16,10 @@ function SidePanel(props) {
         }
         return children;
     }*/
-
-    let { windowWidth, visibleStore } = useStore();
+    let { visibleStore } = useStore();
     return (
         <div id="app-sidepanel"
-             className={`app-sidepanel ${windowWidth >= 1200 || visibleStore.sidePanelVisible ? 'sidepanel-visible' : 'sidepanel-hidden'}`}>
+             className={`app-sidepanel ${visibleStore.sidePanelVisible ? 'sidepanel-visible' : 'sidepanel-hidden'}`}>
             <div id="sidepanel-drop" className="sidepanel-drop" >
 
             </div>

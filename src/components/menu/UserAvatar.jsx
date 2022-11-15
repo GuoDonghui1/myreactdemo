@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import userProfile from "../../assets/images/user.png";
+import { clearLocalStorage} from "../../store/loginReducer";
+import {useStore} from "../../store/MyProvider";
 
 UserAvatar.propTypes = {
 
 };
-
+let logoutHandler = loginDispatch => {
+    clearLocalStorage();
+    // loginDispatch({type: 'LOGOUT'});
+    window.location.href = '/home';
+}
 function UserAvatar(props) {
+    let { loginDispatch } = useStore().loginStore;
     return (
         <div className="app-utility-item app-user-dropdown dropdown"><a
             className="dropdown-toggle"
@@ -19,7 +26,7 @@ function UserAvatar(props) {
                 <li>
                     <hr className="dropdown-divider"/>
                 </li>
-                <li><a className="dropdown-item" href="login.html">Log Out</a></li>
+                <li><a className="dropdown-item" href="#" onClick={e => {e.preventDefault(); logoutHandler(loginDispatch);}}>Log Out</a></li>
             </ul>
         </div>
     );

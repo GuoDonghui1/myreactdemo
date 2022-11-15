@@ -13,6 +13,9 @@ export const getInitState = () => {
     }
     return initState;
 }
+export const clearLocalStorage = () => {
+    localStorage.removeItem('loginState');
+}
 
 const loginReducer = (state, action) => {
     switch (action.type){
@@ -26,7 +29,10 @@ const loginReducer = (state, action) => {
                 isLogin: true,
             };
         case 'LOGOUT':
-            return initState;
+            return {
+                ...initState,
+                doingLogin: true,
+            };
         case 'DOING_LOGIN':
             return {
                 ...state,
