@@ -1,5 +1,5 @@
 export const initState = {
-    doingLogin: false,
+    doingLogin: window.location.pathname === '/login',
     isLogin: false,
     username:'',
     roleId:'',

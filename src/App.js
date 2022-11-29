@@ -1,9 +1,10 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/portal.css';
-import React, {useState, useEffect} from "react";
 import 'font-awesome/css/font-awesome.min.css';
-import MyProvider, {useStore} from "./store/MyProvider";
+import 'antd/dist/antd.less';
+import React, {useState, useEffect} from "react";
+import MyProvider from "./store/MyProvider";
 import {Collapse} from "bootstrap"; // 确保点击折叠展开的部分正常
 import Home from "./components/home/Home";
 import {getInitState as getLoginInitState} from './store/loginReducer';
@@ -26,6 +27,7 @@ import { sidePanelLoadingState } from "./store/LoadingSlice";
 import ContentAreaLoading from "./components/loading/ContentAreaLoading";
 import {getMenus} from "./components/api/MenuService";
 import { getSettingMenuRoute} from "./utils/MenuUtil";
+import ProblemSet from "./components/problemset";
 
 function App() {
     let [settingMenu, setSettingMenu] = useState([]);
@@ -67,8 +69,9 @@ function App() {
                             <Route key={'00'} path={'/'} exact render={() => <Redirect to={{pathname: '/home'}}/>}/>,
                             <Route key={'01'} path={'/home'} component={Home}/>,
                             <Route key={'02'} path={'/news'} render={() => <News/>}/>,
+                            <Route key={'02'} path={'/problemset'} render={p => <ProblemSet {...p}/>}/>,
                             <PrivateRoute key={'04'} path={'/me'} msg={'hello'}>
-                            <Me/>
+                                <Me/>
                             </PrivateRoute>,
                             ...getSettingMenuRoute(settingMenu),
                             ]

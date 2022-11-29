@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ProblemSet from "../problemset";
 
 RouteTest.propTypes = {};
 
@@ -44,4 +45,5 @@ export default {
     'test2': <RouteTest componentName={'测试2'}/>,
     'needAuth': <RouteTest componentName={'需要权限'}/>,
     'noNeedAuth': <RouteTest componentName={'不需要权限'}/>,
+    'problem-set': <ProblemSet/>,
 };

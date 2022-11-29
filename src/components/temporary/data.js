@@ -10,10 +10,10 @@ export const menu = [
     },
     {
         menuId: 2,
-        title: '资讯',
+        title: '问题',
         icon: 'list',
-        url: '/news',
-        name: 'news',
+        url: '/problemset',
+        name: 'problem-set',
     },
     {
         menuId: 3,
